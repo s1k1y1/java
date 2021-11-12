@@ -1,0 +1,5 @@
+package mmms.member.controller;
+//사용자 요청을 제한하는 내용
+public class membercontrolller {
+
+}

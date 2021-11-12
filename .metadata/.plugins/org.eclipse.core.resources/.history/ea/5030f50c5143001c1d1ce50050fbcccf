@@ -1,0 +1,5 @@
+package mmms.member.util;
+//키보드 입력
+public class consoleUtil {
+	
+}

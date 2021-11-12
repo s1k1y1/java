@@ -1,0 +1,26 @@
+package p00.stored_procedure;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class procedure_test {
+	
+	static {
+	try {
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		String url="jdbc:oracle:thin:@localhost:1521:orcl";
+		Connection conn=DriverManager.getConnection(url, "javalink", "javalink");
+		System.out.println("sucess");
+		
+	} catch (ClassNotFoundException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	}
+
+}

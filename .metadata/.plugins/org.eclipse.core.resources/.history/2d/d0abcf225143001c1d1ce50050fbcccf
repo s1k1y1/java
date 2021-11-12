@@ -1,0 +1,13 @@
+package mmms.member.util;
+
+import java.util.Scanner;
+
+import mmms.member.vo.member;
+
+//키보드 입력
+public class consoleUtil {
+	
+	public member getMember(Scanner sc) {
+		return new member();
+	}
+}

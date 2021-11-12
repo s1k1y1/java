@@ -1,0 +1,15 @@
+package mmms.member.controller;
+//사용자 요청을 제한하는 내용
+public class membercontrolller {
+
+	public void processRequest(Action action,Scanner sc){
+		try{
+		action.execute(sc);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+	
+	
+}
