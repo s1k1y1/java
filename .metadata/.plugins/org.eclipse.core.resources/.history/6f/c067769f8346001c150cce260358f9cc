@@ -1,0 +1,25 @@
+package mmms.member.action;
+
+import java.util.Scanner;
+
+import mmms.member.svc.MemberModifyService;
+import mmms.member.util.consoleUtil;
+import mmms.member.vo.member;
+
+public class MemberModifyAction implements action {
+
+	@Override
+	public void execute(Scanner sc) throws Exception {
+		
+		consoleUtil cu=new consoleUtil();
+		String name=cu.getName("수정함", sc);
+		MemberModifyService memberModifyService=new MemberModifyService();
+		
+		
+		member oldMember=memberModifyService.getOldMember(name);
+		member updateMember=cu.getUpdateMember(sc,oldMember);
+		boolean ismodifySuccess =memberModifyService.modifyMember(uqdateMember);
+		
+	}
+
+}

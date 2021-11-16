@@ -1,0 +1,18 @@
+package mmms.member.svc;
+
+import java.util.ArrayList;
+
+import mmms.member.dao.memberDAO;
+import mmms.member.vo.member;
+
+public class memberListService {
+	
+	public ArrayList<member> getMemberList(){
+		
+		memberDAO dao=new memberDAO(con);
+		
+		
+		return null;
+		
+	}
+}

@@ -1,0 +1,97 @@
+package mmms.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import mmms.member.db.jdbcUtil;
+import mmms.member.vo.member;
+
+public class memberDAO {
+
+	
+	Connection con;
+	public memberDAO(Connection con) {
+		this.con = con;
+	}
+	//1.회원등록
+	public int insertNewMember(member newMember) {
+		
+		PreparedStatement pr=null;
+		int insertCount=0;
+		
+		try {
+			String sql="insert into mms_member values(mms_member_id_seq.nextval,?,?,?,?,?)";
+			pr=con.prepareStatement(sql);
+			pr.setString(1, newMember.getName());
+			pr.setString(2, newMember.getAddr());
+			pr.setString(3, newMember.getNation());
+			pr.setString(4, newMember.getEmail());
+			pr.setInt(5, newMember.getAge());
+			insertCount=pr.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+				jdbcUtil.colse(pr);
+		}
+		
+		
+		return insertCount;		
+		
+	}
+
+	//2.회원목록 보기
+	public ArrayList<member> selectMemberList(){//멤버클래스 덩어리를 순차적으로 배열에 넣겠다
+		
+		ArrayList<member> memberlist=new ArrayList<member>();
+		String sql="SELECT * FROM mms_member";
+		member mem=null;
+		PreparedStatement pr;
+		ResultSet re;
+		try {
+			pr = con.prepareStatement(sql);
+			re = pr.executeQuery();
+			while(re.next()) {
+				String name=re.getString("name");
+				String addr=re.getString("addr");
+				String nation=re.getString("nation");
+				String email=re.getString("email");
+				int age=re.getInt("age");
+				
+				mem=new member(name,addr,nation,email,age);//테이블에 저장된 값 입력
+				
+				memberlist.add(mem);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			jdbcUtil.colse(pr);
+		}
+		return memberlist;	
+	}
+	
+	
+	//3.특정 회원 정보 보기
+	public int selectOldMember(String name){
+		return 0;
+			
+	}
+	
+	
+	//4.회원정보 수정
+	public int updateMember(member newMember){
+		return 0;	
+	}
+	
+	//5.회원정보 삭제 
+	
+	
+	
+
+}

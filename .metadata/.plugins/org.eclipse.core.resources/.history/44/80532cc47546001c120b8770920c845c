@@ -1,0 +1,9 @@
+package mmms.member.svc;
+
+import java.util.ArrayList;
+
+public class memberListService {
+	public ArrayList<member> getMemberList({
+		
+	})
+}

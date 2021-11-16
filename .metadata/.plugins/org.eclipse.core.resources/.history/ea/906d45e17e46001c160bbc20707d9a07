@@ -1,0 +1,29 @@
+package mmms.member.svc;
+
+import java.sql.Connection;
+
+import mmms.member.dao.memberDAO;
+import mmms.member.db.jdbcUtil;
+import mmms.member.vo.member;
+
+public class MemberModifyService {
+	public boolean modifyMember(member uqdatemem) {
+		
+		Connection con=jdbcUtil.getConnet();//테이블 연결
+		memberDAO dao=new memberDAO(con);
+		
+		int updatecount=dao.uqdatemember(uqdatemem);
+		
+		
+		boolean ismodifySuccess=false;
+		if(updatecount>0) {
+			ismodifySuccess=true;
+			jdbcUtil.commit(con);
+		}else {
+			jdbcUtil.rollback(con);
+		}
+		jdbcUtil.colse(con);
+		
+		return ismodifySuccess;
+	}
+}
